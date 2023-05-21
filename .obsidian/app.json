@@ -1,3 +1,6 @@
 {
-  "attachmentFolderPath": "Images"
+  "attachmentFolderPath": "Images",
+  "readableLineLength": false,
+  "spellcheck": true,
+  "useMarkdownLinks": true
 }
