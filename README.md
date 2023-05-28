@@ -15,4 +15,5 @@ En este caso yo ocupe el endpoint de APOD en la documentación te explica como p
 
 La ocupe para aquellas personas que estén interesadas en la astronomía sepan cual es el ultima foto que la nasa tomo de los cuerpos celeste que se encuentran en el espacio que la api me dio la siguiente:
 
-![](Pasted%20image%2020230528184138.png)
+![](image/Pasted%20image%2020230528184138.png)
+
