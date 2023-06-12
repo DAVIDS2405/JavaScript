@@ -1,31 +1,44 @@
 {
-  "name": "node-portafolio",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "kwd-dashboard",
+  "version": "0.0.1",
+  "description": "Responsive dashboard built with tailwindcss alpinejs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/index.js",
-    "dev": "nodemon src/index.js"
+    "serve": "run-p css:watch html:serve",
+    "prod": "run-s css:build",
+    "css:watch": "tailwindcss -i src/tailwind.css -o public/build/css/tailwind.css -w",
+    "css:build": "tailwindcss -i src/tailwind.css -o public/build/css/tailwind.css -m",
+    "html:serve": "live-server ./public",
+    "predeploy": "run-s css:build",
+    "deploy": "gh-pages -d public"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "dashboard",
+    "tailwindcss",
+    "layout",
+    "alpinejs",
+    "admin",
+    "template"
+  ],
+  "author": {
+    "name": "Ahmed Kamel",
+    "email": "ak3849909@gmail.com",
+    "url": "https://github.com/Kamona-WD"
+  },
+  "license": "MIT",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "connect-flash": "^0.1.1",
-    "express": "^4.18.2",
-    "express-handlebars": "^7.0.7",
-    "express-session": "^1.17.3",
-    "method-override": "^3.0.0",
-    "mongodb": "^5.6.0",
-    "mongoose": "^7.2.2",
-    "passport": "^0.6.0",
-    "passport-local": "^1.0.0"
+    "alpinejs": "^3.12.2"
   },
   "devDependencies": {
-    "dotenv": "^16.1.4",
-    "nodemon": "^2.0.22",
-    "npm-check-updates": "^16.10.12"
+    "autoprefixer": "^10.3.1",
+    "gh-pages": "^3.2.3",
+    "live-server": "^1.2.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.7"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "printWidth": 120
   }
 }
