@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }))
 
 // Rutas
 app.get('/', (req, res) => {
-  res.render('index')
+  res.send("hola")
 })
 
 // Archivos estáticos
