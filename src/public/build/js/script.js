@@ -1,6 +1,5 @@
 // All javascript code in this project for now is just for demo DON'T RELY ON IT
 
-
 const random = (max = 100) => {
   return Math.round(Math.random() * max) + 20
 }
@@ -264,13 +263,17 @@ document.addEventListener('DOMContentLoaded', function () {
           
           let Titles_Anime_Coincidences = []
 
-          for (const title of results){
-            let modifiedFilename = title.filename.replace(/\(.*?\)|.mp4/g, '')
-            let similitud = title.similarity.toFixed(2)
+          for (const titles of results){
+            let modifiedFilename = titles.filename.replace(/\(.*?\)|.mp4/g, '')
+            let similitud = titles.similarity.toFixed(2)
+            let episodio_anime = titles.episode;
+            let url_video = titles.video
             Titles_Anime_Coincidences.push(modifiedFilename)
-            Titles_Anime_Coincidences.push("Episodio: " +title.episode)
+            Titles_Anime_Coincidences.push("Episodio: " +titles.episode)
             Titles_Anime_Coincidences.push("Similitud: " +similitud + "%")
-            Titles_Anime_Coincidences.push(title.video)
+            Titles_Anime_Coincidences.push(titles.video)
+
+            
             
           }
           for (let i = 0; i < Titles_Anime_Coincidences.length; i+= 4) {
@@ -322,4 +325,11 @@ document.addEventListener('DOMContentLoaded', function () {
   })
 
 })
+
+
+
+
+
+
+
 

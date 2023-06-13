@@ -3,6 +3,8 @@
   "version": "0.0.1",
   "description": "Responsive dashboard built with tailwindcss alpinejs",
   "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "serve": "run-p css:watch html:serve",
     "prod": "run-s css:build",
     "css:watch": "tailwindcss -i src/tailwind.css -o public/build/css/tailwind.css -w",
@@ -26,7 +28,12 @@
   },
   "license": "MIT",
   "dependencies": {
-    "alpinejs": "^3.12.2"
+    "alpinejs": "^3.12.2",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongodb": "^5.6.0",
+    "mongoose": "^7.2.4",
+    "node": "^18.14.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.3.1",
