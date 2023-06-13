@@ -14,11 +14,7 @@
     "admin",
     "template"
   ],
-  "author": {
-    "name": "Ahmed Kamel",
-    "email": "ak3849909@gmail.com",
-    "url": "https://github.com/Kamona-WD"
-  },
+  "author": "Ahmed Kamel <ak3849909@gmail.com> (https://github.com/Kamona-WD)",
   "license": "MIT",
   "dependencies": {
     "alpinejs": "^3.12.2",
@@ -40,5 +36,6 @@
     "semi": false,
     "singleQuote": true,
     "printWidth": 120
-  }
+  },
+  "main": "postcss.config.js"
 }
