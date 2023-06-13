@@ -266,9 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
           for (const titles of results){
             let modifiedFilename = titles.filename.replace(/\(.*?\)|.mp4/g, '')
             let similitud = titles.similarity.toFixed(2)
-            let episodio_anime = titles.episode;
-            let url_video = titles.video
-            
+
             Titles_Anime_Coincidences.push(modifiedFilename)
             Titles_Anime_Coincidences.push("Episodio: " +titles.episode)
             Titles_Anime_Coincidences.push("Similitud: " +similitud + "%")

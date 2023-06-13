@@ -679,7 +679,16 @@ video {
   white-space: nowrap;
   border-width: 0;
 }
-
+.Title-anime{
+  margin-right: 2px;
+}
+.Episode-anime{
+  margin-left: 6px;
+  font-weight: bold;
+}
+.Similarity-anime{
+  margin-left: 6px;
+}
 .fixed {
   position: fixed;
 }
