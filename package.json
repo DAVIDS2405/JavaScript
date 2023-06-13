@@ -4,14 +4,7 @@
   "description": "Responsive dashboard built with tailwindcss alpinejs",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "nodemon src/index.js",
-    "serve": "run-p css:watch html:serve",
-    "prod": "run-s css:build",
-    "css:watch": "tailwindcss -i src/tailwind.css -o public/build/css/tailwind.css -w",
-    "css:build": "tailwindcss -i src/tailwind.css -o public/build/css/tailwind.css -m",
-    "html:serve": "live-server ./public",
-    "predeploy": "run-s css:build",
-    "deploy": "gh-pages -d public"
+    "dev": "nodemon src/index.js"
   },
   "keywords": [
     "dashboard",
