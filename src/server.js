@@ -2,11 +2,14 @@
 const express = require('express')
 const path = require("path")
 const methodOverride = require('method-override');
+const passport = require("passport");
+const session = require("express-session");
 const {engine} = require("express-handlebars")
 
 
 //Initialitation
 const app = express()
+require("./config/passport");
 
 //Configurations
 app.set("port", process.env.port || 3000)
@@ -21,11 +24,25 @@ app.set('view engine','.hbs')
 //Middelwares
 app.use(express.urlencoded({extended:false}))
 app.use(methodOverride('_method'))
+app.use(
+  session({
+    secret: "secret",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 //Global variables
 
+app.use((req,res,next)=>{
+    res.locals.user = req.user?.name || null
+    next()
+})
 //routes
 app.use(require('./routers/index.routes'))
 app.use(require('./routers/portafolio.routes'))
+app.use(require("./routers/user.routes"));
 //Static Files
 app.use(express.static(path.join(__dirname,"public")))
 
