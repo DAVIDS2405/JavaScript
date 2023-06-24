@@ -1,19 +1,14 @@
-# Funciones
+credenciales 
+.env
+DBUSER= your database user
+DBPASSWORD=your password
+DBNAME= name of the database
 
-Para las funciones se crearon 4:
+CLOUD_NAME=cloudinary name
+API_KEY=api key of cloudinary
+API_SECRET=api secret
 
-1.  Calcular año bisiesto (Función Declara)
-
-    ![](Images/Pasted%20image%2020230520232528.png)
-
-2.  Calculadora sencilla (Función Expresada)
-
-    ![](Images/Pasted%20image%2020230520232538.png)
-
-3.  Generador de contraseñas (Funcion Flecha)
-
-    ![](Images/Pasted%20image%2020230520232555.png)
-
-4.  Convertidor de unidades (Función anónima y autoejecutable)
-
-    ![](Images/Pasted%20image%2020230520232608.png)
+HOST_MAILTRAP=sandbox.smtp.mailtrap.io
+PORT_MAILTRAP=25 or 465 or 587 or 2525
+USER_MAILTRAP=your user of mailtrap
+PASS_MAILTRAP= pass of mailtrap
