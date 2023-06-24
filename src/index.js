@@ -4,9 +4,8 @@ require('dotenv').config() //ESTO SIEMPRE VA PRIMERO
 const app = require('./server.js')
 const connection= require("./database.js")
 
-app.listen(app.get('port'),()=>{
-    console.log(`Server on port ${app.get('port')}`);
-})
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 
 connection()
