@@ -5,6 +5,7 @@ const methodOverride = require('method-override');
 
 const passport = require('passport');
 const session = require('express-session');
+const MemoryStore = require("memorystore")(session);
 
 const fileUpload = require('express-fileupload')
 
@@ -33,10 +34,15 @@ app.use(express.urlencoded({extended:false}))
 app.use(methodOverride('_method'))
 
 app.use(session({ 
-    secret: 'secret',
-    resave:true,
+    cookie: { maxAge: 86400000 },
+    store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
+    resave: false,
+    secret: 'keyboard cat',
     saveUninitialized:true
 }));
+
 app.use(passport.initialize())
 app.use(passport.session())
 

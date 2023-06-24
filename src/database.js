@@ -5,12 +5,10 @@ const MONGODB_URI = 'mongodb+srv://grupo2:FeNUdVSzIN2L3L1C@cluster0.jmb51re.mong
 
 connection = async()=>{
     try {
-         await mongoose.connect(MONGODB_URI, {
-           useNewUrlParser: true,
-           useCreateIndex: true,
-           useUnifiedTopology: true,
-           useNewUrlParser: true,
-         });
+         await mongoose.connect(MONGODB_URI,{
+            useUnifiedTopology:true,
+            useNewUrlParser:true
+        })
         console.log("Database is connected")
     } catch (error) {
         console.log(error);

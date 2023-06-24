@@ -24,6 +24,7 @@
     "express-handlebars": "^7.0.7",
     "express-session": "^1.17.3",
     "fs-extra": "^11.1.1",
+    "memorystore": "^1.6.7",
     "method-override": "^3.0.0",
     "mongoose": "^7.2.2",
     "nodemailer": "^6.9.3",
