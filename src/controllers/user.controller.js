@@ -12,10 +12,10 @@ const renderRegisterForm =(req,res)=>{
 const registerNewUser = async(req,res)=>{
     
     const{name,email,password,confirmpassword} = req.body
-    if (Object.values(req.body).includes("")) return res.send("Lo sentimos, debes llenar todos los campos")
-    if(password != confirmpassword) return res.send("Lo sentimos, los passwords no coinciden")
+    if (Object.values(req.body).includes("")) {return res.send("Lo sentimos, debes llenar todos los campos")}
+    if(password != confirmpassword) {return res.send("Lo sentimos, los passwords no coinciden")}
     const userBDD = await User.findOne({email})
-    if(userBDD) return res.send("Lo sentimos, el email ya se encuentra registrado")
+    if(userBDD) {return res.send("Lo sentimos, el email ya se encuentra registrado")}
     const newUser = await new User({name,email,password,confirmpassword})
     newUser.password = await newUser.encrypPassword(password)
     const token = newUser.crearToken()
@@ -41,7 +41,7 @@ const logoutUser =(req,res)=>{
 }
 
 const confirmEmail = async(req,res)=>{
-    if(!(req.params.token)) return res.send("Lo sentimos, no se puede validar la cuenta")
+    if(!(req.params.token)) {return res.send("Lo sentimos, no se puede validar la cuenta")}
     const userBDD = await User.findOne({token:req.params.token})
     userBDD.token = null
     userBDD.confirmEmail=true
