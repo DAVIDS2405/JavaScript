@@ -18,7 +18,7 @@ module.exports.sendMailToUser = async(userMail,token)=>{
       from: "grupo2@hotmail.com",
       to: userMail,
       subject: "Verifica tu cuenta de correo electrónico",
-      html: `<a href="http://javascript-production-974c.up.railway.app/user/confirmar/${token}">Clic para confirmar tu cuenta</a>`,
+      html: `<a href="http://https://grupo2-bot-chat.up.railway.app//user/confirmar/${token}">Clic para confirmar tu cuenta</a>`,
     });
     console.log("Message sent: %s", info.messageId);
 }
