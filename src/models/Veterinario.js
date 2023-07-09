@@ -2,6 +2,7 @@
 
 import {Schema, model} from 'mongoose'
 import bcrypt from "bcryptjs"
+import { response } from 'express'
 
 const veterinarioSchema = new Schema({
     nombre:{

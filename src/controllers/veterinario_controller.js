@@ -44,7 +44,7 @@ const registro = async (req,res)=>{
     const token = nuevoVeterinario.crearToken()
     await sendMailToUser(email,token)
     await nuevoVeterinario.save()
-    res.status(200).json({msg:"Revisa tu correo electrónico para confirmar tu cuenta"})
+    res.status(200).json({msg:`Revisa tu correo electrónico para confirmar tu cuenta`})
 }
 const confirmEmail = async (req,res)=>{
     if(!(req.params.token)) return res.status(400).json({msg:"Lo sentimos, no se puede validar la cuenta"})
@@ -55,8 +55,18 @@ const confirmEmail = async (req,res)=>{
     await veterinarioBDD.save()
     res.status(200).json({msg:"Token confirmado, ya puedes iniciar sesión"}) 
 }
-const listarVeterinarios = (req,res)=>{
-    res.status(200).json({res:'lista de veterinarios registrados'})
+const listarVeterinarios = async (req,res)=>{
+
+    const veterinarioBDD = await Veterinario.find({})
+    const veterinarioBDDList = veterinarioBDD.map((veterinarios) =>{
+        
+	    const {email,nombre,apellido,_id} = veterinarios
+        
+	    return {email,nombre,apellido,_id}
+    })
+
+    res.status(200).json(veterinarioBDDList)
+
 }
 
 const actualizarPerfil = async (req,res)=>{
@@ -73,7 +83,7 @@ const actualizarPerfil = async (req,res)=>{
             return res.status(404).json({msg:`Lo sentimos, el existe ya se encuentra registrado`})  
         }
     }
-		veterinarioBDD.nombre = req.body.nombre || veterinarioBDD?.nombre
+	veterinarioBDD.nombre = req.body.nombre || veterinarioBDD?.nombre
     veterinarioBDD.apellido = req.body.apellido  || veterinarioBDD?.apellido
     veterinarioBDD.direccion = req.body.direccion ||  veterinarioBDD?.direccion
     veterinarioBDD.telefono = req.body.telefono || veterinarioBDD?.telefono
