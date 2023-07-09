@@ -236,7 +236,15 @@ router.post('/nuevo-password/:token',nuevoPassword)
  *         content:
  *           application/json:
  *             schema:
- *               $ref: '#/components/schemas/VeterinarioPerfil'
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: OK
+ *                 data:
+ *                   type: array 
+ *                   items: 
+ *                     type: object
  *       401:
  *         description: No se proporcionó un token de autenticación válido.
  *       403:
