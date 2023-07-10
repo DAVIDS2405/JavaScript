@@ -96,29 +96,6 @@ router.post('/login',login)
 
 router.post('/registro',registro)
 
-/**
- * @openapi
- * /api/confirmar/:token:
- *   get:
- *     tags:
- *       - Veterinario
- *     responses:
- *       200:
- *         description: User register
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: OK
- *                 data:
- *                   type: array 
- *                   items: 
- *                     type: object
- */
-
 router.get('/confirmar/:token',confirmEmail)
 
 /**
@@ -228,8 +205,6 @@ router.post('/nuevo-password/:token',nuevoPassword)
  *     summary: Obtener perfil del veterinario autenticado
  *     tags:
  *       - Veterinario
- *     security:
- *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: Perfil del veterinario obtenido exitosamente.
@@ -245,23 +220,6 @@ router.post('/nuevo-password/:token',nuevoPassword)
  *                   type: array 
  *                   items: 
  *                     type: object
- *       401:
- *         description: No se proporcionó un token de autenticación válido.
- *       403:
- *         description: Token de autenticación válido pero no tiene acceso al perfil.
- *     securitySchemes:
- *       bearerAuth:
- *         type: http
- *         scheme: bearer
- *         bearerFormat: JWT
- *     parameters:
- *       - in: header
- *         name: Authorization
- *         description: Token de autenticación JWT en formato 'Bearer token'
- *         required: true
- *         schema:
- *           type: string
- *           format: jwt
  */
 
 router.get('/perfil',verificarAutenticacion,perfil)
@@ -272,8 +230,6 @@ router.get('/perfil',verificarAutenticacion,perfil)
  *   put:
  *     tags:
  *       - Veterinario
- *     security:
- *       - bearerAuth: []
  *     responses:
  *       200:
  *         description: OK
@@ -299,8 +255,6 @@ router.put('/veterinario/actualizarpassword',verificarAutenticacion,actualizarPa
  *   get:
  *     tags:
  *       - Veterinario
- *     security:
- *       - bearerAuth: []
  *     securitySchemes:
  *       bearerAuth:
  *         type: http
@@ -313,13 +267,6 @@ router.put('/veterinario/actualizarpassword',verificarAutenticacion,actualizarPa
  *         schema:
  *           type: string
  *         description: ID del usuario a obtener. 
- *       - in: header
- *         name: Authorization
- *         description: Token de autenticación JWT en formato 'Bearer token'
- *         required: true
- *         schema:
- *           type: string
- *           format: jwt
  *     responses:
  *       200:
  *         description: OK
