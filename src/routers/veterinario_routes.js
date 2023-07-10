@@ -21,7 +21,7 @@ const router = Router()
  * /api/login:
  *   post:
  *     tags:
- *       - Login and Register
+ *       - Login and Register Vet
  *     requestBody:
  *       required: true
  *       content:
@@ -29,13 +29,12 @@ const router = Router()
  *           schema:
  *             type: object
  *             properties:
+ *               nombre: 
  *               email:
  *                 type: string
- *                 description: Email del usuario
  *                 example: test123@hotmail.com
  *               password:
  *                 type: string
- *                 description: Email del usuario
  *                 example: 123456
  *     responses:
  *       200:
@@ -53,15 +52,13 @@ const router = Router()
  *                   items: 
  *                     type: object
  */
-
 router.post('/login',login)
-
 /**
  * @openapi
  * /api/registro:
  *   post:
  *     tags:
- *       - Login and Register
+ *       - Login and Register Vet
  *     requestBody:
  *       required: true
  *       content:
@@ -69,13 +66,23 @@ router.post('/login',login)
  *           schema:
  *             type: object
  *             properties:
+ *               nombre:
+ *                 type: string
+ *                 example: David
+ *               apellido:
+ *                 type: string
+ *                 example: Basantes
+ *               direccion:
+ *                 type: string
+ *                 example: Magdalena
+ *               telefono:
+ *                 type: string
+ *                 example: 0990095964
  *               email:
  *                 type: string
- *                 description: Email del usuario
  *                 example: test123@hotmail.com
  *               password:
  *                 type: string
- *                 description: Email del usuario
  *                 example: 123456
  *     responses:
  *       200:
@@ -93,7 +100,6 @@ router.post('/login',login)
  *                   items: 
  *                     type: object
  */
-
 router.post('/registro',registro)
 
 router.get('/confirmar/:token',confirmEmail)
@@ -103,7 +109,7 @@ router.get('/confirmar/:token',confirmEmail)
  * /api/veterinarios:
  *   get:
  *     tags:
- *       - Veterinario
+ *       - Veterinario coming soon
  *     responses:
  *       200:
  *         description: OK
@@ -128,7 +134,7 @@ router.get('/veterinarios',listarVeterinarios)
  * /api/recuperar-password:
  *   post:
  *     tags:
- *       - Recover Password
+ *       - Recover Password coming soon
  *     responses:
  *       200:
  *         description: OK
@@ -153,7 +159,7 @@ router.post('/recuperar-password',recuperarPassword)
  * /api/recuperar-password/:token:
  *   get:
  *     tags:
- *       - Recover Password
+ *       - Recover Password coming soon
  *     responses:
  *       200:
  *         description: OK
@@ -178,7 +184,7 @@ router.get('/recuperar-password/:token',comprobarTokenPasword)
  * /api/nuevo-password/:token:
  *   post:
  *     tags:
- *       - Veterinario
+ *       - Veterinario coming soon
  *     responses:
  *       200:
  *         description: OK
@@ -204,7 +210,7 @@ router.post('/nuevo-password/:token',nuevoPassword)
  *   get:
  *     summary: Obtener perfil del veterinario autenticado
  *     tags:
- *       - Veterinario
+ *       - Veterinario coming soon
  *     responses:
  *       200:
  *         description: Perfil del veterinario obtenido exitosamente.
@@ -229,7 +235,7 @@ router.get('/perfil',verificarAutenticacion,perfil)
  * /api/veterinario/actualizarpassword:
  *   put:
  *     tags:
- *       - Veterinario
+ *       - Veterinario coming soon
  *     responses:
  *       200:
  *         description: OK
@@ -254,7 +260,7 @@ router.put('/veterinario/actualizarpassword',verificarAutenticacion,actualizarPa
  * /api/veterinario/:id:
  *   get:
  *     tags:
- *       - Veterinario
+ *       - Veterinario coming soon
  *     securitySchemes:
  *       bearerAuth:
  *         type: http
@@ -288,7 +294,7 @@ router.get('/veterinario/:id',verificarAutenticacion,detalleVeterinario)/**
  * /api/recuperar-password:
  *   post:
  *     tags:
- *       - Recover Password
+ *       - Recover Password coming soon
  *     responses:
  *       200:
  *         description: OK
@@ -311,7 +317,7 @@ router.get('/veterinario/:id',verificarAutenticacion,detalleVeterinario)/**
  * /api/veterinario/:id:
  *   put:
  *     tags:
- *       - Veterinario
+ *       - Veterinario coming soon
  *     responses:
  *       200:
  *         description: OK
