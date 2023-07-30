@@ -18,13 +18,13 @@
   },
   "metro": [
     {
-      "nombre": "Quitumbe",
+      "nombre": "Magdalena",
       "id": "aaab703b-6af6-4853-bf05-6134be5e8710",
       "sector": "Sur-norte",
-      "salida": "Quitumbe",
+      "salida": "Magdalena",
       "llegada": "Carolina",
-      "maquinista": "Byron",
-      "detalles": "nn"
+      "maquinista": "Jose",
+      "detalles": "Cuidado que le gusta la alta velocidad"
     }
   ]
 }
