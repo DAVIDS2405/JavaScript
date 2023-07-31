@@ -21,7 +21,7 @@ const router = Router()
  * /api/login:
  *   post:
  *     tags:
- *       - Login and Register Vet
+ *       - Login y Registro Veterinarios
  *     requestBody:
  *       required: true
  *       content:
@@ -29,7 +29,6 @@ const router = Router()
  *           schema:
  *             type: object
  *             properties:
- *               nombre: 
  *               email:
  *                 type: string
  *                 example: test123@hotmail.com
@@ -48,17 +47,31 @@ const router = Router()
  *                   type: string
  *                   example: OK
  *                 data:
- *                   type: array 
- *                   items: 
- *                     type: object
+ *                   type: object
+ *                   properties:
+ *                     token:
+ *                       type: string
+ *                       example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+ *                     usuario:
+ *                       type: object
+ *                       properties:
+ *                         nombre:
+ *                           type: string
+ *                           example: Usuario Ejemplo
+ *                         email:
+ *                           type: string
+ *                           example: test123@hotmail.com
  */
+
 router.post('/login',login)
 /**
  * @openapi
  * /api/registro:
  *   post:
  *     tags:
- *       - Login and Register Vet
+ *       - Login y Registro Veterinarios
+ *     summary: Registro de nuevo usuario
+ *     description: Crea un nuevo usuario con correo electrónico y contraseña.
  *     requestBody:
  *       required: true
  *       content:
@@ -66,24 +79,15 @@ router.post('/login',login)
  *           schema:
  *             type: object
  *             properties:
- *               nombre:
- *                 type: string
- *                 example: David
- *               apellido:
- *                 type: string
- *                 example: Basantes
- *               direccion:
- *                 type: string
- *                 example: Magdalena
- *               telefono:
- *                 type: string
- *                 example: 0990095964
  *               email:
  *                 type: string
- *                 example: test123@hotmail.com
+ *                 example: julio@hotmail.com
  *               password:
  *                 type: string
- *                 example: 123456
+ *                 example: contraseña
+ *               token:
+ *                 type: string
+ *                 example: 4FYSTYaaA1564
  *     responses:
  *       200:
  *         description: OK
@@ -96,12 +100,65 @@ router.post('/login',login)
  *                   type: string
  *                   example: OK
  *                 data:
- *                   type: array 
- *                   items: 
- *                     type: object
+ *                   type: object 
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *                       example: Usuario registrado exitosamente.
+ *                     user:
+ *                       type: object
+ *                       properties:
+ *                         email:
+ *                           type: string
+ *                           example: julio@hotmail.com
+ *                         token:
+ *                           type: string
+ *                           example: 4FYSTYaaA1564
  */
-router.post('/registro',registro)
 
+router.post('/registro',registro)
+/**
+ * @openapi
+ * /api/confirmar/:token:
+ *   post:
+ *     tags:
+ *       - Login y Registro Veterinarios
+ *     parameters:
+ *      - name: token
+ *        in: path
+ *        description: Token de confirmación de email
+ *        required: true
+ *        schema:
+ *          type: string
+ *     summary: Registro de nuevo usuario
+ *     description: Crea un nuevo usuario con correo electrónico y contraseña.
+ *     responses:
+ *       200:
+ *         description: OK
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: OK
+ *                 data:
+ *                   type: object 
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *                       example: Usuario confirmado exitosamente.
+ *                     user:
+ *                       type: object
+ *                       properties:
+ *                         email:
+ *                           type: string
+ *                           example: julio@hotmail.com
+ *                         token:
+ *                           type: string
+ *                           example: 4FYSTYaaA1564
+ */
 router.get('/confirmar/:token',confirmEmail)
 
 /**
@@ -109,7 +166,7 @@ router.get('/confirmar/:token',confirmEmail)
  * /api/veterinarios:
  *   get:
  *     tags:
- *       - Veterinario coming soon
+ *       - Veterinarios
  *     responses:
  *       200:
  *         description: OK
@@ -122,9 +179,26 @@ router.get('/confirmar/:token',confirmEmail)
  *                   type: string
  *                   example: OK
  *                 data:
- *                   type: array 
- *                   items: 
- *                     type: object
+ *                   type: object 
+ *                   properties:
+ *                     message:
+ *                       type: string
+ *                       example: Usuarios.
+ *                     user:
+ *                       type: object
+ *                       properties:
+ *                         email:
+ *                           type: string
+ *                           example: julio@hotmail.com
+ *                         nombre:
+ *                           type: string
+ *                           example: Julio
+ *                         apellido:
+ *                           type: string
+ *                           example: Ríos
+ *                         id:
+ *                           type: string
+ *                           example: s45l5oi10A
  */
 
 router.get('/veterinarios',listarVeterinarios)
@@ -134,7 +208,20 @@ router.get('/veterinarios',listarVeterinarios)
  * /api/recuperar-password:
  *   post:
  *     tags:
- *       - Recover Password coming soon
+ *       - Recuperar Contraseña Veterinarios
+ *     requestBody:
+ *      required: true
+ *      content:
+ *        application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               correo:
+ *                 type: string
+ *                 example: julio@hotmail.com
+ *               token:
+ *                 type: string
+ *                 example: 4FYSTYaaA1564
  *     responses:
  *       200:
  *         description: OK
@@ -143,6 +230,9 @@ router.get('/veterinarios',listarVeterinarios)
  *             schema:
  *               type: object
  *               properties:
+ *                 message: 
+ *                   type: string
+ *                   example: Contraseña recuperada exitosamente
  *                 status:
  *                   type: string
  *                   example: OK
@@ -159,7 +249,14 @@ router.post('/recuperar-password',recuperarPassword)
  * /api/recuperar-password/:token:
  *   get:
  *     tags:
- *       - Recover Password coming soon
+ *       - Recuperar Contraseña Veterinarios
+ *     parameters:
+ *      - name: token
+ *        in: path
+ *        description: Token de confirmación de recuperación de contraseña
+ *        required: true
+ *        schema:
+ *          type: string
  *     responses:
  *       200:
  *         description: OK
@@ -168,6 +265,9 @@ router.post('/recuperar-password',recuperarPassword)
  *             schema:
  *               type: object
  *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Token validado exitosamente.
  *                 status:
  *                   type: string
  *                   example: OK
@@ -184,7 +284,20 @@ router.get('/recuperar-password/:token',comprobarTokenPasword)
  * /api/nuevo-password/:token:
  *   post:
  *     tags:
- *       - Veterinario coming soon
+ *       - Nueva Contraseña Veterinarios
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               password:
+ *                 type: string
+ *                 example: contraseña
+ *               confirm-password:
+ *                 type: string
+ *                 example: contraseña
  *     responses:
  *       200:
  *         description: OK
@@ -193,6 +306,9 @@ router.get('/recuperar-password/:token',comprobarTokenPasword)
  *             schema:
  *               type: object
  *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Ya puede iniciar sesión.
  *                 status:
  *                   type: string
  *                   example: OK
@@ -210,7 +326,7 @@ router.post('/nuevo-password/:token',nuevoPassword)
  *   get:
  *     summary: Obtener perfil del veterinario autenticado
  *     tags:
- *       - Veterinario coming soon
+ *       - Veterinarios
  *     responses:
  *       200:
  *         description: Perfil del veterinario obtenido exitosamente.
@@ -235,7 +351,20 @@ router.get('/perfil',verificarAutenticacion,perfil)
  * /api/veterinario/actualizarpassword:
  *   put:
  *     tags:
- *       - Veterinario coming soon
+ *       - Veterinarios
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               old_password:
+ *                 type: string
+ *                 example: 4FYSTYaaA1564
+ *               new_password:
+ *                 type: string
+ *                 example: 4FYSTYaaA1564
  *     responses:
  *       200:
  *         description: OK
@@ -244,35 +373,38 @@ router.get('/perfil',verificarAutenticacion,perfil)
  *             schema:
  *               type: object
  *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Contraseña actualizada exitosamente.
  *                 status:
  *                   type: string
  *                   example: OK
  *                 data:
- *                   type: array 
- *                   items: 
- *                     type: object
+ *                   type: object
+ *                   properties:
+ *                     result:
+ *                       type: string
+ *                       example: Password updated successfully.
  */
+
 
 router.put('/veterinario/actualizarpassword',verificarAutenticacion,actualizarPassword)
 
 /**
  * @openapi
- * /api/veterinario/:id:
+ * /api/veterinario/{id}:
  *   get:
  *     tags:
- *       - Veterinario coming soon
- *     securitySchemes:
- *       bearerAuth:
- *         type: http
- *         scheme: bearer
- *         bearerFormat: JWT 
+ *       - Veterinarios
+ *     security:
+ *       - bearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: string
- *         description: ID del usuario a obtener. 
+ *         description: ID del veterinario a obtener.
  *     responses:
  *       200:
  *         description: OK
@@ -285,39 +417,55 @@ router.put('/veterinario/actualizarpassword',verificarAutenticacion,actualizarPa
  *                   type: string
  *                   example: OK
  *                 data:
- *                   type: array 
- *                   items: 
- *                     type: object
- */
-router.get('/veterinario/:id',verificarAutenticacion,detalleVeterinario)/**
- * @openapi
- * /api/recuperar-password:
- *   post:
- *     tags:
- *       - Recover Password coming soon
- *     responses:
- *       200:
- *         description: OK
- *         content:
- *           application/json:
- *             schema:
- *               type: object
- *               properties:
- *                 status:
- *                   type: string
- *                   example: OK
- *                 data:
- *                   type: array 
- *                   items: 
- *                     type: object
+ *                   type: object
+ *                   properties:
+ *                     veterinarian:
+ *                       type: object
+ *                       properties:
+ *                         name:
+ *                           type: string
+ *                           example: Juan Pérez
+ *                         email:
+ *                           type: string
+ *                           example: juan@example.com
  */
 
+router.get('/veterinario/:id',verificarAutenticacion,detalleVeterinario)
 /**
  * @openapi
- * /api/veterinario/:id:
+ * /api/veterinario/{id}:
  *   put:
  *     tags:
- *       - Veterinario coming soon
+ *       - Veterinarios
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               nombre:
+ *                 type: string
+ *                 example: Julio
+ *               apellido:
+ *                 type: string
+ *                 example: Ríos
+ *               direccion:
+ *                 type: string
+ *                 example: Enrique Segoviano
+ *               telefono:
+ *                 type: string
+ *                 example: 0056163585
+ *               email:
+ *                 type: string
+ *                 example: julio@hotmail.com
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ID del veterinario a actualizar.
  *     responses:
  *       200:
  *         description: OK
@@ -326,14 +474,36 @@ router.get('/veterinario/:id',verificarAutenticacion,detalleVeterinario)/**
  *             schema:
  *               type: object
  *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Perfil actualizado exitosamente.
  *                 status:
  *                   type: string
  *                   example: OK
  *                 data:
- *                   type: array 
- *                   items: 
- *                     type: object
+ *                   type: object
+ *                   properties:
+ *                     veterinarian:
+ *                       type: object
+ *                       properties:
+ *                         nombre:
+ *                           type: string
+ *                           example: Julio
+ *                         apellido:
+ *                           type: string
+ *                           example: Ríos
+ *                         direccion:
+ *                           type: string
+ *                           example: Enrique Segoviano
+ *                         telefono:
+ *                           type: string
+ *                           example: 0056163585
+ *                         email:
+ *                           type: string
+ *                           example: julio@hotmail.com
  */
+
+
 
 router.put('/veterinario/:id',verificarAutenticacion,actualizarPerfil)
 
