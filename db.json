@@ -18,13 +18,22 @@
   },
   "metro": [
     {
-      "nombre": "Magdalena",
-      "id": "aaab703b-6af6-4853-bf05-6134be5e8710",
-      "sector": "Sur-norte",
+      "nombre": "David",
+      "sector": "Sur-Norteaaa",
+      "salida": "Magdalenaaaaaaaaaa",
+      "llegada": "Quicentro Norte",
+      "maquinista": "asd",
+      "detalles": "1",
+      "id": "2e9c76e3-26ed-4fb1-87ab-372c9c54ca07"
+    },
+    {
+      "nombre": "David",
+      "sector": "Sur-Norteaaa",
       "salida": "Magdalena",
-      "llegada": "Carolina",
-      "maquinista": "Jose",
-      "detalles": "Cuidado que le gusta la alta velocidad"
+      "llegada": "EPN",
+      "maquinista": "aaaa",
+      "detalles": "asdasdasd",
+      "id": "fbd9265a-c934-4b9a-b947-ffa633e7a81d"
     }
   ]
 }

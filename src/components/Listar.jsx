@@ -1,5 +1,6 @@
 import logoMetro from '../assets/tren.webp'
 import Mensajes from './Mensajes'
+import Swal from "sweetalert2";
 import { useState } from "react"
 import { useEffect } from 'react'
 
@@ -13,7 +14,6 @@ const Listar = ({ estado,setIdmetro }) => {
                 try {
                     const respuesta = await (await fetch("http://localhost:3000/metro")).json()
                     setRutas(respuesta)
-                    console.log("petición");
                 }
                 catch (error) {
                     console.log(error);
@@ -24,15 +24,27 @@ const Listar = ({ estado,setIdmetro }) => {
 
     const handleDelete = async (id) => {
         try {
-            const confirmar = confirm("Vas a aliminar una ruta")
-            if (confirmar) {
-                const url = `http://localhost:3000/metro/${id}`
+            Swal.fire({
+              title: "Estas seguro de Eliminar?",
+              icon:'warning',
+              showCancelButton: true,
+              cancelButtonText:'Cancelar',
+              confirmButtonText:"Aceptar"
+            }).then(async (result) => {
+              if (result.isConfirmed) {
+                const url = `http://localhost:3000/metro/${id}`;
                 await fetch(url, {
-                    method: 'DELETE',
-                })
-                const nuevasRutas = rutas.filter(ruta => ruta.id !== id)
-                setRutas(nuevasRutas)
-            }
+                  method: "DELETE",
+                });
+                const nuevasRutas = rutas.filter((ruta) => ruta.id !== id);
+                setRutas(nuevasRutas);
+                Swal.fire("Ruta eliminada exitosamente", "", "success");
+              }
+              else if (result.isDismissed){
+                Swal.fire('Eliminacion no realizada', '', 'error')
+              }
+            });
+            
         }
         catch (error) {
             console.log(error);
@@ -60,6 +72,7 @@ const Listar = ({ estado,setIdmetro }) => {
                                 <div className='flex justify-between mt-3 lg:justify-end md:justify-end gap-3'>
                                     <button className='bg-sky-900 text-white px-6 py-1 rounded-full'
                                         onClick={() => { setIdmetro(ruta.id) }}
+                                        
                                     >Actualizar</button>
                                     <button className='bg-red-900 text-white px-6 py-1 rounded-full' onClick={() => { handleDelete(ruta.id) }}
                                     >Eliminar</button>
