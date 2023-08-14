@@ -12,7 +12,7 @@ const Listar = ({ estado,setIdmetro}) => {
         if (estado || rutas.length >= 0) {
             (async function () {
                 try {
-                    const respuesta = await (await fetch("http://localhost:3000/metro")).json()
+                    const respuesta = await (await fetch("https://64d98140e947d30a260a1e99.mockapi.io/metro")).json()
                     setRutas(respuesta)
                 }
                 catch (error) {
@@ -34,7 +34,7 @@ const Listar = ({ estado,setIdmetro}) => {
               confirmButtonColor: "#d33",
             }).then(async (result) => {
               if (result.isConfirmed) {
-                const url = `http://localhost:3000/metro/${id}`;
+                const url = `https://64d98140e947d30a260a1e99.mockapi.io/metro/${id}`;
                 await fetch(url, {
                   method: "DELETE",
                 });

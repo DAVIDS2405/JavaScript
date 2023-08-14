@@ -40,7 +40,9 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
       (async function fetchData() {
         try {
           const respuesta = await (
-            await fetch(`http://localhost:3000/metro/${idMetro}`)
+            await fetch(
+              `https://64d98140e947d30a260a1e99.mockapi.io/metro/${idMetro}`
+            )
           ).json();
           setInitialValues(respuesta);
         } catch (error) {
@@ -82,7 +84,7 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
         onSubmit={async (data, { resetForm }) => {
           try {
             if (data.id) {
-              const url = `http://localhost:3000/metro/${data.id}`;
+              const url = `https://64d98140e947d30a260a1e99.mockapi.io/metro/${data.id}`;
               await fetch(url, {
                 method: "PUT",
                 body: JSON.stringify(data),
@@ -103,7 +105,7 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
                 timer: 2000,
               });
             } else {
-              const url = "http://localhost:3000/metro";
+              const url = "https://64d98140e947d30a260a1e99.mockapi.io/metro";
               data.id = uuidv4();
 
               await fetch(url, {
