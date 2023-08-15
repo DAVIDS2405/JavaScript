@@ -19,15 +19,15 @@ function App() {
 
   return (
     <div className={`${darkMode ? "dark" : ""}`}>
-      <nav className="bg-white h-20 flex justify-around items-center dark:bg-slate-800">
+      <nav className="bg-white h-20 flex justify-between items-center dark:bg-slate-800">
         <img
-          className="cursor-pointer bg-cover rounded-full dark:bg-white"
+          className="cursor-pointer bg-cover rounded-full dark:bg-white ml-3"
           src={logoMetro}
           alt="logo"
           width={50}
           height={50}
         />
-        <ul className="flex items-center">
+        <ul className="flex items-center mr-4">
           <div className="cursor-pointer" onClick={toggleDarkMode}>
             <div
               className={`transition-transform duration-300 ease-in-out ${

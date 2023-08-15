@@ -3,11 +3,12 @@ import Mensajes from './Mensajes'
 import Swal from "sweetalert2";
 import { useState } from "react"
 import { useEffect } from 'react'
+import { FaSadTear } from "react-icons/fa";
 
 const Listar = ({ estado,setIdmetro}) => {
 
     const [rutas, setRutas] = useState([])
-    const [limpiarIdMetro, setLimpiarIdMetro] = useState(false);
+
     useEffect(() => {
         if (estado || rutas.length >= 0) {
             (async function () {
@@ -30,8 +31,8 @@ const Listar = ({ estado,setIdmetro}) => {
               showCancelButton: true,
               cancelButtonText: "Cancelar",
               confirmButtonText: "Aceptar",
-              cancelButtonColor: "#3085d6",
-              confirmButtonColor: "#d33",
+              cancelButtonColor: "#d33",
+              confirmButtonColor: "#3085d6",
             }).then(async (result) => {
               if (result.isConfirmed) {
                 const url = `https://64d98140e947d30a260a1e99.mockapi.io/metro/${id}`;
@@ -40,9 +41,21 @@ const Listar = ({ estado,setIdmetro}) => {
                 });
                 const nuevasRutas = rutas.filter((ruta) => ruta.id !== id);
                 setRutas(nuevasRutas);
-                Swal.fire("Ruta eliminada exitosamente", "", "success");
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "La ruta a se a eliminado con exito",
+                  showConfirmButton: false,
+                  timer: 2000,
+                });
               } else if (result.isDismissed) {
-                Swal.fire("Eliminacion no realizada", "", "error");
+                Swal.fire({
+                  position: "center",
+                  icon: "error",
+                  title: "Ocurrio un error al eliminar",
+                  showConfirmButton: false,
+                  timer: 2000,
+                });
               }
             });
             
@@ -55,12 +68,19 @@ const Listar = ({ estado,setIdmetro}) => {
     return (
       <>
         {rutas.length === 0 ? (
-          <Mensajes
-            className="opacity-0 transition-opacity duration-300 ease-in-out animate-fadeIn"
-            tipo={"bg-green-900"}
-          >
-            "No existe rutas creadas"
-          </Mensajes>
+          <section className="flex justify-center items-center ">
+            <Mensajes
+              className="opacity-0 transition-opacity duration-300 ease-in-out animate-fadeIn hover:animate-bounce w-full"
+              tipo={""}
+            >
+              <p className="flex items-center text-2xl">
+                No existe rutas creadas
+                <span>
+                  <FaSadTear className="text-red-500 ml-2" />
+                </span>
+              </p>
+            </Mensajes>
+          </section>
         ) : (
           rutas.map((ruta) => (
             <div

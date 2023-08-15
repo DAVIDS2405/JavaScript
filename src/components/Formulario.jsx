@@ -14,6 +14,15 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
     detalles: "",
     id: 0,
   });
+  
+  const maxCharactersTextArea = 500;
+  const maxCharactersInputs = 20;
+
+  const validateDetalles = (value) => {
+    let error;
+    
+    return error;
+  }; 
   const handleClearDatos = () => {
     setInitialValues({
       nombre: "",
@@ -24,15 +33,9 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
       detalles: "",
       id: "",
     });
-    handleClearIdMetro()
+    handleClearIdMetro();
 
-    Swal.fire({
-      position: "top-end",
-      icon: "error",
-      title: "Tu ruta no se actualizo",
-      showConfirmButton: false,
-      timer: 1500,
-    });
+   
   };
 
   useEffect(() => {
@@ -63,22 +66,32 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
           if (!data.nombre) {
             error.nombre = "Ingresa un nombre de la ruta";
           } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(data.nombre)) {
-            error.nombre =
-              "El nombre de la ruta solo puede contener letras y espacios";
+            error.nombre = "Solo puede contener letras y espacios";
           }
           if (!data.sector) {
             error.sector = "Ingresa la ruta";
+          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(data.sector)) {
+            error.sector = "Solo puede contener letras y espacios";
           }
 
           if (!data.salida) {
             error.salida = "Ingresa el punto de salida";
+          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(data.salida)) {
+            error.salida = "Solo puede contener letras y espacios";
           }
+
           if (!data.llegada) {
             error.llegada = "Ingresa el punto de llegada";
+          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(data.llegada)) {
+            error.llegada = "Solo puede contener letras y espacios";
           }
+
           if (!data.maquinista) {
             error.maquinista = "Ingresa el nombre del maquinista";
+          } else if (!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(data.maquinista)) {
+            error.maquinista = "Solo puede contener letras y espacios";
           }
+
           return error;
         }}
         onSubmit={async (data, { resetForm }) => {
@@ -98,42 +111,62 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
               }, 1000);
 
               Swal.fire({
-                position: "top-end",
+                position: "center",
                 icon: "success",
                 title: "La ruta a se actualizado",
                 showConfirmButton: false,
                 timer: 2000,
               });
             } else {
+              let nombres = [];
               const url = "https://64d98140e947d30a260a1e99.mockapi.io/metro";
-              data.id = uuidv4();
+              try {
+                const respuesta = await (
+                  await fetch(
+                    "https://64d98140e947d30a260a1e99.mockapi.io/metro"
+                  )
+                ).json();
+                nombres = respuesta.map((data) => data.nombre);
+              } catch (error) {
+                console.log(error);
+              }
 
-              await fetch(url, {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: { "Content-Type": "application/json" },
-              });
+              if (!nombres.includes(data.nombre)) {
+                data.id = uuidv4();
+                await fetch(url, {
+                  method: "POST",
+                  body: JSON.stringify(data),
+                  headers: { "Content-Type": "application/json" },
+                });
 
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "La ruta a se a creado con exito",
-                showConfirmButton: false,
-                timer: 2000,
-              });
-
-              setEstado(true);
-              setTimeout(() => {
-                resetForm();
-                setEstado(false);
-              }, 1000);
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "La ruta a se a creado con exito",
+                  showConfirmButton: false,
+                  timer: 2000,
+                });
+                setEstado(true);
+                setTimeout(() => {
+                  resetForm();
+                  setEstado(false);
+                }, 1000);
+              } else {
+                Swal.fire({
+                  position: "center",
+                  icon: "error",
+                  title: "La ruta ya existe",
+                  showConfirmButton: false,
+                  timer: 2000,
+                });
+              }
             }
           } catch (error) {
             console.log(error);
           }
         }}
       >
-        {({ errors, values, handleChange, handleBlur }) => (
+        {({ errors, values }) => (
           <Form>
             <div>
               <label
@@ -149,6 +182,7 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
                 className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-2"
                 placeholder="Nombre de la ruta"
                 name="nombre"
+                maxLength={maxCharactersInputs}
               />
 
               <ErrorMessage
@@ -157,6 +191,9 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
                   <Mensajes tipo="text-red-500">{errors.nombre}</Mensajes>
                 )}
               />
+              <div className="text-gray-500  mb-3">
+                {values.nombre.length}/{maxCharactersInputs}
+              </div>
             </div>
 
             <div>
@@ -172,6 +209,7 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
                 className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-2"
                 placeholder="Sector de la ruta"
                 name="sector"
+                maxLength={maxCharactersInputs}
               />
               <ErrorMessage
                 name="sector"
@@ -179,6 +217,9 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
                   <Mensajes tipo="text-red-500">{errors.sector}</Mensajes>
                 )}
               />
+              <div className="text-gray-500  mb-3">
+                {values.sector.length}/{maxCharactersInputs}
+              </div>
             </div>
 
             <div>
@@ -194,6 +235,7 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
                 className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-2"
                 placeholder="Punto de salida"
                 name="salida"
+                maxLength={maxCharactersInputs}
               />
 
               <ErrorMessage
@@ -202,6 +244,9 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
                   <Mensajes tipo="text-red-500">{errors.salida}</Mensajes>
                 )}
               />
+              <div className="text-gray-500  mb-3">
+                {values.salida.length}/{maxCharactersInputs}
+              </div>
             </div>
 
             <div>
@@ -217,6 +262,7 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
                 className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-2"
                 placeholder="Punto de llegada"
                 name="llegada"
+                maxLength={maxCharactersInputs}
               />
 
               <ErrorMessage
@@ -225,6 +271,9 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
                   <Mensajes tipo="text-red-500">{errors.llegada}</Mensajes>
                 )}
               />
+              <div className="text-gray-500  mb-3">
+                {values.llegada.length}/{maxCharactersInputs}
+              </div>
             </div>
 
             <div>
@@ -240,6 +289,7 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
                 className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-2"
                 placeholder="Nombre del maquinista"
                 name="maquinista"
+                maxLength={maxCharactersInputs}
               />
 
               <ErrorMessage
@@ -248,6 +298,9 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
                   <Mensajes tipo="text-red-500">{errors.maquinista}</Mensajes>
                 )}
               />
+              <div className="text-gray-500  mb-3">
+                {values.maquinista.length}/{maxCharactersInputs}
+              </div>
             </div>
             <div>
               <label
@@ -256,37 +309,47 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
               >
                 Detalles:{" "}
               </label>
-              <textarea
+              <Field
+                as="textarea"
                 id="detalles"
-                type="text"
-                className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-2"
                 name="detalles"
-                value={values.detalles}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md mb-2"
+                maxLength={maxCharactersTextArea}
               />
+              <div className="text-gray-500  mb-3">
+                {values.detalles.length}/{maxCharactersTextArea}
+              </div>
             </div>
 
-            <input
-              type="submit"
-              className="bg-sky-900 w-full p-3 
-    text-white uppercase font-bold rounded-lg 
-    hover:bg-red-900 cursor-pointer transition-all transform hover:shadow-lg hover:scale-105"
-              value={values.id ? "Actualizar ruta" : "Registrar ruta"}
-            />
+            {values.id ? (
+              <div className="flex items-center justify-center">
+                <button
+                  type="submit"
+                  className="bg-sky-900 hover:bg-sky-800 text-white font-semibold py-2 px-4 mt-2 rounded-xl transform transition-transform motion-reduce:transform-none motion-safe:hover:scale-110"
+                >
+                  Actualizar
+                </button>
+                <button
+                  type="button"
+                  className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 mt-2 rounded-xl transform transition-transform motion-reduce:transform-none motion-safe:hover:scale-110 ml-2"
+                  onClick={handleClearDatos}
+                >
+                  No actualizar
+                </button>
+              </div>
+            ) : (
+              <section className="flex justify-center items-center">
+                <button
+                  type="submit"
+                  className="bg-sky-900 hover:bg-sky-800 text-white font-semibold py-2 px-4 mt-2 rounded-xl transform transition-transform motion-reduce:transform-none motion-safe:hover:scale-110 "
+                >
+                  Registrar
+                </button>
+              </section>
+            )}
           </Form>
         )}
       </Formik>
-      {idMetro ? (
-        <button
-          className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 mt-2 rounded-xl transform transition-transform motion-reduce:transform-none motion-safe:hover:scale-110"
-          onClick={handleClearDatos}
-        >
-          No actualizar
-        </button>
-      ) : (
-        ""
-      )}
     </>
   );
 };
