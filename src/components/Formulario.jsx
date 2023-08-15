@@ -97,26 +97,52 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
         onSubmit={async (data, { resetForm }) => {
           try {
             if (data.id) {
-              const url = `https://64d98140e947d30a260a1e99.mockapi.io/metro/${data.id}`;
-              await fetch(url, {
-                method: "PUT",
-                body: JSON.stringify(data),
-                headers: {
-                  "Content-Type": "application/json",
-                },
-              });
-              setEstado(true);
-              setTimeout(() => {
-                setEstado(false);
-              }, 1000);
+              let nombres = [];
+              try {
+                const respuesta = await (
+                  await fetch(
+                    "https://64d98140e947d30a260a1e99.mockapi.io/metro"
+                  )
+                ).json();
+                nombres = respuesta.map((data) => data.nombre);
+              } catch (error) {
+                console.log(error);
+              }
 
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "La ruta a se actualizado",
-                showConfirmButton: false,
-                timer: 2000,
-              });
+              if (!nombres.includes(data.nombre)) {
+                const url = `https://64d98140e947d30a260a1e99.mockapi.io/metro/${data.id}`;
+                await fetch(url, {
+                  method: "PUT",
+                  body: JSON.stringify(data),
+                  headers: {
+                    "Content-Type": "application/json",
+                  },
+                });
+                setEstado(true);
+                setTimeout(() => {
+                  setEstado(false);
+                }, 1000);
+                handleClearDatos()
+
+                Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "La ruta a se actualizado",
+                  showConfirmButton: false,
+                  timer: 2000,
+                });
+
+              } else {
+                Swal.fire({
+                  position: "center",
+                  icon: "error",
+                  title: "La ruta ya existe",
+                  showConfirmButton: false,
+                  timer: 2000,
+                });
+              }
+
+              
             } else {
               let nombres = [];
               const url = "https://64d98140e947d30a260a1e99.mockapi.io/metro";
