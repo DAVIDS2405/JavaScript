@@ -127,7 +127,7 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "La ruta a se actualizado",
+                  title: "La ruta se ha actualizado",
                   showConfirmButton: false,
                   timer: 2000,
                 });
@@ -168,7 +168,7 @@ export const Formulario = ({ setEstado, idMetro, handleClearIdMetro }) => {
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "La ruta a se a creado con exito",
+                  title: "La ruta se ha creado con exito",
                   showConfirmButton: false,
                   timer: 2000,
                 });

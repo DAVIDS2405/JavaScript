@@ -44,7 +44,7 @@ const Listar = ({ estado,setIdmetro}) => {
                 Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "La ruta a se a eliminado con exito",
+                  title: "La ruta se ha eliminado con exito",
                   showConfirmButton: false,
                   timer: 2000,
                 });
@@ -52,7 +52,7 @@ const Listar = ({ estado,setIdmetro}) => {
                 Swal.fire({
                   position: "center",
                   icon: "error",
-                  title: "Ocurrio un error al eliminar",
+                  title: "No se elimino la ruta",
                   showConfirmButton: false,
                   timer: 2000,
                 });
