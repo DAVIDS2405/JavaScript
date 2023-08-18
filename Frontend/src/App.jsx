@@ -14,33 +14,38 @@ import Actualizar from './paginas/Actualizar'
 import Perfil from './paginas/Perfil'
 import Restablecer from "./paginas/Restablecer";
 import { Confirmar } from './paginas/Confirmar'
-
+import { AuthProvider } from "./context/AuthProvider";
 
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route index element={<LandinPage />} />
+        <AuthProvider>
+          <Routes>
+            <Route index element={<LandinPage />} />
 
-          <Route path="/" element={<Auth />}>
-            <Route path="login" element={<Login />} />
-            <Route path="register" element={<Register />} />
-            <Route path="forgot/:id" element={<Forgot />} />
-            <Route path="confirmar/:token" element={<Confirmar />} />
-            <Route path="recuperar-password/:token" element={<Restablecer />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
+            <Route path="/" element={<Auth />}>
+              <Route path="login" element={<Login />} />
+              <Route path="register" element={<Register />} />
+              <Route path="forgot/:id" element={<Forgot />} />
+              <Route path="confirmar/:token" element={<Confirmar />} />
+              <Route
+                path="recuperar-password/:token"
+                element={<Restablecer />}
+              />
+              <Route path="*" element={<NotFound />} />
+            </Route>
 
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route index element={<Perfil />} />
-            <Route path="listar" element={<Listar />} />
-            <Route path="visualizar/:id" element={<Visualizar />} />
-            <Route path="crear" element={<Crear />} />
-            <Route path="actualizar/:id" element={<Actualizar />} />
-          </Route>
-        </Routes>
+            <Route path="/dashboard" element={<Dashboard />}>
+              <Route index element={<Perfil />} />
+              <Route path="listar" element={<Listar />} />
+              <Route path="visualizar/:id" element={<Visualizar />} />
+              <Route path="crear" element={<Crear />} />
+              <Route path="actualizar/:id" element={<Actualizar />} />
+            </Route>
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </>
   );
