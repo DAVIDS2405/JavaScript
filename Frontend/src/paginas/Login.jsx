@@ -26,6 +26,9 @@ const Login = () => {
       try {
         const url = `${import.meta.env.VITE_BACKEND_URL}/login`;
         const respuesta = await axios.post(url, form);
+        if(respuesta.data.token === true){
+
+        }
         localStorage.setItem("token", respuesta.data.token);
         setAuth(respuesta.data);
         navigate("/dashboard");
@@ -44,14 +47,15 @@ const Login = () => {
             bg-no-repeat bg-cover bg-center sm:block hidden
             "
         ></div>
-        {Object.keys(mensaje).length > 0 && (
-          <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>
-        )}
+
         <div className="w-1/2 h-screen bg-white flex justify-center items-center">
           <div className="md:w-4/5 sm:w-full">
             <h1 className="text-3xl font-semibold mb-2 text-center uppercase  text-gray-500">
               Welcome back
             </h1>
+            {Object.keys(mensaje).length > 0 && (
+              <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>
+            )}
             <small className="text-gray-400 block my-4 text-sm">
               Welcome back! Please enter your details
             </small>

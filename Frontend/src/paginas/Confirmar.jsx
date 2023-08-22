@@ -28,7 +28,7 @@ export const Confirmar = () => {
           <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>
         )}
         <img
-          class="object-cover h-80 w-80 rounded-full border-4 border-solid border-slate-600"
+          className="object-cover h-80 w-80 rounded-full border-4 border-solid border-slate-600"
           src={logoDog}
           alt="image description"
         />
