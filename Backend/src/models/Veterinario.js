@@ -1,8 +1,5 @@
-
-
 import {Schema, model} from 'mongoose'
 import bcrypt from "bcryptjs"
-import { response } from 'express'
 
 const veterinarioSchema = new Schema({
     nombre:{
@@ -29,7 +26,7 @@ const veterinarioSchema = new Schema({
         type:String,
         require:true,
         trim:true,
-		unique:true
+				unique:true
     },
     password:{
         type:String,

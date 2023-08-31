@@ -30,6 +30,7 @@ const Login = () => {
 
         }
         localStorage.setItem("token", respuesta.data.token);
+        
         setAuth(respuesta.data);
         navigate("/dashboard");
       } catch (error) {
