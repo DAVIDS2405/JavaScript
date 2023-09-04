@@ -70,7 +70,9 @@ const Restablecer = () => {
       {tokenback && (
         <form className="w-full" onSubmit={handleSubmit}>
           <div className="mb-1">
-            <label className="mb-2 block text-sm font-semibold">Contraseña</label>
+            <label className="mb-2 block text-sm font-semibold">
+              Contraseña
+            </label>
             <input
               type="password"
               placeholder="Ingresa tu contraseña"
@@ -92,9 +94,14 @@ const Restablecer = () => {
             />
           </div>
           <div className="mb-3">
-            <button className="bg-gray-600 text-slate-300 border py-2 w-full rounded-xl mt-5 hover:scale-105 duration-300 hover:bg-gray-900 hover:text-white">
+          
+            <Link
+              to="/login"
+              type="submit"
+              className="bg-gray-600 text-slate-300 border py-2 w-full rounded-xl mt-5 hover:scale-105 duration-300 hover:bg-gray-900 hover:text-white"
+            >
               Enviar
-            </button>
+            </Link>
           </div>
         </form>
       )}
