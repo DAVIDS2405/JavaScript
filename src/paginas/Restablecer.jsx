@@ -1,5 +1,4 @@
 import logoDog from "../assets/dog-hand.webp";
-import { Link } from "react-router-dom";
 import Mensaje from "../componets/Alertas/Mensaje";
 import { useEffect, useState } from "react";
 import { useParams} from "react-router-dom";
@@ -19,6 +18,7 @@ const Restablecer = () => {
       const respuesta = await axios.get(url);
       setTokenBack(true);
       setMensaje({ respuesta: respuesta.data.msg, tipo: true });
+      history.pushState("/login")
     } catch (error) {
       setMensaje({ respuesta: error.response.data.msg, tipo: false });
     }
