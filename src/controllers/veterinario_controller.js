@@ -120,6 +120,7 @@ const recuperarPassword = async(req,res)=>{
     if(!veterinarioBDD) return res.status(404).json({msg:"Lo sentimos, el usuario no se encuentra registrado"})
     const token = veterinarioBDD.crearToken()
     veterinarioBDD.token=token
+    veterinarioBDD.confirmEmail = false
     await sendMailToRecoveryPassword(email,token)
     await veterinarioBDD.save()
     res.status(200).json({msg:"Revisa tu correo electrónico para reestablecer tu cuenta"})
@@ -140,6 +141,7 @@ const nuevoPassword = async (req,res)=>{
     const veterinarioBDD = await Veterinario.findOne({token:req.params.token})
     if(veterinarioBDD?.token !== req.params.token) return res.status(404).json({msg:"Lo sentimos, no se puede validar la cuenta"})
     veterinarioBDD.token = null
+    veterinarioBDD.confirmEmail = true
     veterinarioBDD.password = await veterinarioBDD.encrypPassword(password)
     await veterinarioBDD.save()
     res.status(200).json({msg:"Felicitaciones, ya puedes iniciar sesión con tu nuevo password"}) 
