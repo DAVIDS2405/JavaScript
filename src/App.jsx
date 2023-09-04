@@ -17,6 +17,7 @@ import { Confirmar } from "./paginas/Confirmar";
 import { AuthProvider } from "./context/AuthProvider";
 import { PrivateRoute } from "./routes/PrivateRoute";
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -47,7 +48,8 @@ function App() {
                   </Route>
                 </Routes>
               </PrivateRoute>
-            }/>
+            }
+          />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

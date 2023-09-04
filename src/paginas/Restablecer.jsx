@@ -18,7 +18,6 @@ const Restablecer = () => {
       const respuesta = await axios.get(url);
       setTokenBack(true);
       setMensaje({ respuesta: respuesta.data.msg, tipo: true });
-      history.pushState("/login")
     } catch (error) {
       setMensaje({ respuesta: error.response.data.msg, tipo: false });
     }
