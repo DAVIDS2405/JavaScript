@@ -1,15 +1,15 @@
 import logoDog from "../assets/dog-hand.webp";
-import { useHistory } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import Mensaje from "../componets/Alertas/Mensaje";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import axios from "axios";
 
 const Restablecer = () => {
   const { token } = useParams();
   const [mensaje, setMensaje] = useState({});
   const [tokenback, setTokenBack] = useState(false);
-  const history = useHistory();
+  
   const verifyToken = async () => {
 
     try {
@@ -47,7 +47,7 @@ const Restablecer = () => {
       setForm({});
       setMensaje({ respuesta: respuesta.data.msg, tipo: true });
       setTimeout(() => {
-        history.push("/login");
+        <Link to="/login"></Link>
       }, 1000);
     } catch (error) {
       setMensaje({ respuesta: error.response.data.msg, tipo: false });
