@@ -1,5 +1,5 @@
 import logoDog from "../assets/dog-hand.webp";
-import { Link } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import Mensaje from "../componets/Alertas/Mensaje";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -46,6 +46,9 @@ const Restablecer = () => {
       const respuesta = await axios.post(url, form);
       setForm({});
       setMensaje({ respuesta: respuesta.data.msg, tipo: true });
+      setTimeout(() => {
+        history.push("/login"); 
+      }, 1000);
     } catch (error) {
       setMensaje({ respuesta: error.response.data.msg, tipo: false });
     }
@@ -70,9 +73,7 @@ const Restablecer = () => {
       {tokenback && (
         <form className="w-full" onSubmit={handleSubmit}>
           <div className="mb-1">
-            <label className="mb-2 block text-sm font-semibold">
-              Contraseña
-            </label>
+            <label className="mb-2 block text-sm font-semibold">Contraseña</label>
             <input
               type="password"
               placeholder="Ingresa tu contraseña"
@@ -94,14 +95,10 @@ const Restablecer = () => {
             />
           </div>
           <div className="mb-3">
-          
-            <Link
-              to="/login"
-              type="submit"
-              className="bg-gray-600 text-slate-300 border py-2 w-full rounded-xl mt-5 hover:scale-105 duration-300 hover:bg-gray-900 hover:text-white"
-            >
+            <button className="bg-gray-600 text-slate-300 border py-2 w-full rounded-xl mt-5 hover:scale-105 duration-300 hover:bg-gray-900 hover:text-white">
               Enviar
-            </Link>
+            </button>
+            
           </div>
         </form>
       )}
