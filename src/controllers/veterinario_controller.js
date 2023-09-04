@@ -2,7 +2,6 @@ import Veterinario from "../models/Veterinario.js"
 import { sendMailToUser, sendMailToRecoveryPassword } from "../config/nodemailer.js"
 import generarJWT from "../helpers/crearJWT.js"
 import mongoose from "mongoose";
-
 const login = async(req,res)=>{
     const {email,password} = req.body
     if (Object.values(req.body).includes("")) return res.status(404).json({msg:"Lo sentimos, debes llenar todos los campos"})
@@ -146,9 +145,6 @@ const nuevoPassword = async (req,res)=>{
     await veterinarioBDD.save()
     res.status(200).json({msg:"Felicitaciones, ya puedes iniciar sesión con tu nuevo password"}) 
 }
-
-
-
 export {
     login,
     perfil,
@@ -160,5 +156,5 @@ export {
     actualizarPassword,
 	recuperarPassword,
     comprobarTokenPasword,
-	nuevoPassword
+	nuevoPassword,
 }
