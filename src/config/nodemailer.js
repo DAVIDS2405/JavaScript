@@ -21,7 +21,7 @@ const sendMailToUser = async(userMail,token)=>{
     html: `
     <h1>Sistema de gestión (VET-ESFOT 🐶 😺)</h1>
     <hr>
-    <a href="http://localhost:5173/confirmar/${token}">Clic para confirmar tu cuenta</a>
+    <a href="https://frontend-poly-system.onrender.com/confirmar/${token}">Clic para confirmar tu cuenta</a>
     <hr>
     <footer>Grandote te da la Bienvenida!</footer>
     `
