@@ -21,7 +21,7 @@ const sendMailToUser = async(userMail,token)=>{
       html: `
     <h1>Sistema de gestión (VET-ESFOT 🐶 😺)</h1>
     <hr>
-    <a href="http://localhost/confirmar/${token}">Clic para confirmar tu cuenta</a>
+    <a href="https://frontend-poly-system.onrender.com/confirmar/${token}">Clic para confirmar tu cuenta</a>
     <hr>
     <footer>Grandote te da la Bienvenida!</footer>
     `,
@@ -39,7 +39,7 @@ const sendMailToRecoveryPassword = async(userMail,token)=>{
       html: `
     <h1>Sistema de gestión (VET-ESFOT 🐶 😺)</h1>
     <hr>
-    <a href="http://localhost/recuperar-password/${token}">Clic para reestablecer tu contraseña</a>
+    <a href="https://frontend-poly-system.onrender.com/recuperar-password/${token}">Clic para reestablecer tu contraseña</a>
     <hr>
     <footer>Grandote te da la Bienvenida!</footer>
     `,
