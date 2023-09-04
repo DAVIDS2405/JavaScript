@@ -9,7 +9,7 @@ const Restablecer = () => {
   const { token } = useParams();
   const [mensaje, setMensaje] = useState({});
   const [tokenback, setTokenBack] = useState(false);
-
+  const history = useHistory();
   const verifyToken = async () => {
 
     try {
@@ -47,7 +47,7 @@ const Restablecer = () => {
       setForm({});
       setMensaje({ respuesta: respuesta.data.msg, tipo: true });
       setTimeout(() => {
-        history.push("/login"); 
+        history.push("/login");
       }, 1000);
     } catch (error) {
       setMensaje({ respuesta: error.response.data.msg, tipo: false });
