@@ -22,7 +22,7 @@ export const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const url = "http://localhost:3000/api/registro";
+      const url = ` ${import.meta.env.VITE_BACKEND_URL}/api/registro`;
       const respuesta = await axios.post(url, form);
       setMensaje({ respuesta: respuesta.data.msg, tipo: true });
       Swal.fire({
