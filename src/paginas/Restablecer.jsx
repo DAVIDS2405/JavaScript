@@ -46,9 +46,7 @@ const Restablecer = () => {
       const respuesta = await axios.post(url, form);
       setForm({});
       setMensaje({ respuesta: respuesta.data.msg, tipo: true });
-      setTimeout(() => {
-        <Link to="/login"></Link>
-      }, 1000);
+      
     } catch (error) {
       setMensaje({ respuesta: error.response.data.msg, tipo: false });
     }
@@ -73,7 +71,9 @@ const Restablecer = () => {
       {tokenback && (
         <form className="w-full" onSubmit={handleSubmit}>
           <div className="mb-1">
-            <label className="mb-2 block text-sm font-semibold">Contraseña</label>
+            <label className="mb-2 block text-sm font-semibold">
+              Contraseña
+            </label>
             <input
               type="password"
               placeholder="Ingresa tu contraseña"
@@ -95,9 +95,10 @@ const Restablecer = () => {
             />
           </div>
           <div className="mb-3">
-            <button className="bg-gray-600 text-slate-300 border py-2 w-full rounded-xl mt-5 hover:scale-105 duration-300 hover:bg-gray-900 hover:text-white">
-              Enviar
-            </button>
+            
+              <button className="bg-gray-600 text-slate-300 border py-2 w-full rounded-xl mt-5 hover:scale-105 duration-300 hover:bg-gray-900 hover:text-white">
+                Enviar
+              </button>
             
           </div>
         </form>
