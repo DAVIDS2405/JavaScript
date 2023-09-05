@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { MdDeleteForever, MdNoteAdd, MdInfo } from "react-icons/md";
 import axios from "axios";
+import Swal from "sweetalert2";
 import Mensaje from "./Alertas/Mensaje";
 import { useNavigate } from "react-router-dom";
 

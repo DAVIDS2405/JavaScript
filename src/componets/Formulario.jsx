@@ -16,14 +16,14 @@ export const Formulario = ({ paciente }) => {
   const validationSchema = Yup.object().shape({
     nombre: Yup.string()
       .required('Campo obligatorio')
-      .max(charLimit, `El nombre no puede tener más de ${charLimit} caracteres`),
+      .max(charLimit, `El nombre no puede tener más de ${charLimit} carácteres`),
     propietario: Yup.string()
       .required('Campo obligatorio')
-      .max(charLimit, `El nombre del propietario no puede tener más de ${charLimit} caracteres`),
+      .max(charLimit, `El nombre del propietario no puede tener más de ${charLimit} carácteres`),
     email: Yup.string()
       .required('Campo obligatorio')
       .email('Ingrese un correo válido')
-      .max(charLimit, `El correo no puede tener más de ${charLimit} caracteres`),
+      .max(charLimit, `El correo no puede tener más de ${charLimit} carácteres`),
     celular: Yup.string()
       .matches(/^\d{10}$/, 'El número de celular debe tener 10 dígitos')
       .nullable(),
@@ -32,7 +32,7 @@ export const Formulario = ({ paciente }) => {
       .nullable(),
     salida: Yup.date(),
     sintomas: Yup.string()
-      .max(500, 'El campo de síntomas no puede tener más de 500 caracteres'),
+      .max(500, 'El campo de síntomas no puede tener más de 500 carácteres'),
   });
 
   return (
@@ -124,7 +124,7 @@ export const Formulario = ({ paciente }) => {
               }`}
             />
             <div className="text-gray-500 text-sm mb-2">
-              Caracteres restantes: {charLimit - values.nombre.length}
+              carácteres restantes: {charLimit - values.nombre.length}
             </div>
             <ErrorMessage
               name="nombre"
@@ -150,7 +150,7 @@ export const Formulario = ({ paciente }) => {
               }`}
             />
             <div className="text-gray-500 text-sm mb-2">
-              Caracteres restantes: {charLimit - values.propietario.length}
+              carácteres restantes: {charLimit - values.propietario.length}
             </div>
             <ErrorMessage
               name="propietario"
@@ -176,7 +176,7 @@ export const Formulario = ({ paciente }) => {
               }`}
             />
             <div className="text-gray-500 text-sm mb-2">
-              Caracteres restantes: {charLimit - values.email.length}
+              carácteres restantes: {charLimit - values.email.length}
             </div>
             <ErrorMessage
               name="email"
@@ -198,7 +198,7 @@ export const Formulario = ({ paciente }) => {
               placeholder="Celular del propietario"
               maxLength={10}
               onKeyPress={(e) => {
-                // Permite solo dígitos y evita otros caracteres
+                // Permite solo dígitos y evita otros carácteres
                 const onlyNumbers = /^[0-9\b]+$/;
                 if (!onlyNumbers.test(e.key)) {
                   e.preventDefault();
@@ -231,7 +231,7 @@ export const Formulario = ({ paciente }) => {
               placeholder="Convencional del propietario"
               maxLength={10}
               onKeyPress={(e) => {
-                // Permite solo dígitos y evita otros caracteres
+                // Permite solo dígitos y evita otros carácteres
                 const onlyNumbers = /^[0-9\b]+$/;
                 if (!onlyNumbers.test(e.key)) {
                   e.preventDefault();
@@ -286,7 +286,7 @@ export const Formulario = ({ paciente }) => {
               }}
             />
             <div className="text-gray-500 text-sm mb-2">
-              Caracteres restantes: {500 - values.sintomas.length}
+              carácteres restantes: {500 - values.sintomas.length}
             </div>
             <ErrorMessage
               name="sintomas"
