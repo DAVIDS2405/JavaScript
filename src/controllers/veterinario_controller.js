@@ -11,16 +11,17 @@ const login = async(req,res)=>{
     const verificarPassword = await veterinarioBDD.matchPassword(password)
     if(!verificarPassword) return res.status(404).json({msg:"Lo sentimos, el password no es el correcto"})
     const token = generarJWT(veterinarioBDD._id)
-    const {nombre,apellido,direccion,telefono,_id} = veterinarioBDD
+    const {nombre,apellido,direccion,telefono,password_requiered,_id} = veterinarioBDD
     res.status(200).json({
-        token,
-        nombre,
-        apellido,
-        direccion,
-        telefono,
-        _id,
-        email:veterinarioBDD.email
-    })
+      token,
+      nombre,
+      apellido,
+      direccion,
+      telefono,
+      password_requiered,
+      _id,
+      email: veterinarioBDD.email,
+    });
 }
 
 
@@ -59,9 +60,26 @@ const confirmEmail = async (req,res)=>{
 
 
 
-const listarVeterinarios = (req,res)=>{
-    res.status(200).json({res:'lista de veterinarios registrados'})
-}
+const listarVeterinarios = async (req, res) => {
+  try {
+    // Utiliza el método find para buscar todos los veterinarios
+    const veterinarios = await Veterinario.find();
+
+    // Si se encontraron veterinarios, envíalos en la respuesta
+    if (veterinarios.length > 0) {
+      return res.status(200).json(veterinarios);
+    } else {
+      return res
+        .status(404)
+        .json({ msg: "No se encontraron veterinarios registrados" });
+    }
+  } catch (error) {
+    console.error(error);
+    return res
+      .status(500)
+      .json({ msg: "Hubo un error al listar los veterinarios" });
+  }
+};
 
 
 const detalleVeterinario = async(req,res)=>{
@@ -75,6 +93,7 @@ const detalleVeterinario = async(req,res)=>{
 
 const actualizarPerfil = async (req,res)=>{
     const {id} = req.params
+    
     if( !mongoose.Types.ObjectId.isValid(id) ) return res.status(404).json({msg:`Lo sentimos, debe ser un id válido`});
     if (Object.values(req.body).includes("")) return res.status(400).json({msg:"Lo sentimos, debes llenar todos los campos"})
     const veterinarioBDD = await Veterinario.findById(id)
@@ -104,6 +123,7 @@ const actualizarPassword = async (req,res)=>{
     const verificarPassword = await veterinarioBDD.matchPassword(req.body.passwordactual)
     if(!verificarPassword) return res.status(404).json({msg:"Lo sentimos, el password actual no es el correcto"})
     veterinarioBDD.password = await veterinarioBDD.encrypPassword(req.body.passwordnuevo)
+    veterinarioBDD.password_requiered = false
     await veterinarioBDD.save()
     res.status(200).json({msg:"Password actualizado correctamente"})
 }

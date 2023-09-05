@@ -43,6 +43,13 @@ const veterinarioSchema = new Schema({
     confirmEmail:{
         type:Boolean,
         default:false
+    },
+    githubId:{
+        type: Number,
+    },
+    password_requiered:{
+        type: Boolean,
+        default:false
     }
 
 },{
