@@ -12,13 +12,13 @@ export const Register = () => {
   const validationSchema = Yup.object().shape({
     nombre: Yup.string()
       .required("Campo obligatorio")
-      .max(50, "El nombre debe tener como máximo 50 carácteres"),
+      .max(50, "El nombre debe tener como máximo 50 Carácteres"),
     apellido: Yup.string()
       .required("Campo obligatorio")
-      .max(50, "El apellido debe tener como máximo 50 carácteres"),
+      .max(50, "El apellido debe tener como máximo 50 Carácteres"),
     direccion: Yup.string()
       .required("Campo obligatorio")
-      .max(50, "La dirección debe tener como máximo 50 carácteres"),
+      .max(50, "La dirección debe tener como máximo 50 Carácteres"),
     telefono: Yup.string()
       .required("Campo obligatorio")
       .matches(/^\d{10}$/, "El teléfono debe contener exactamente 10 números")
@@ -30,7 +30,7 @@ export const Register = () => {
     email: Yup.string()
       .required("Campo obligatorio")
       .email("Ingrese un correo válido")
-      .max(50, "El correo debe tener como máximo 50 carácteres"),
+      .max(50, "El correo debe tener como máximo 50 Carácteres"),
     password: Yup.string().required("Campo obligatorio"),
   });
 
@@ -66,7 +66,7 @@ export const Register = () => {
   });
 
   const handleTelefonoChange = (e) => {
-    const cleanedValue = e.target.value.replace(/\D/g, ""); // Remover carácteres no numéricos
+    const cleanedValue = e.target.value.replace(/\D/g, ""); // Remover Carácteres no numéricos
     formik.setFieldValue("telefono", cleanedValue);
   };
 
@@ -113,7 +113,7 @@ export const Register = () => {
                 </div>
               )}
               <div className="text-gray-500 text-sm">
-                carácteres restantes: {50 - formik.values.nombre.length}
+                Carácteres restantes: {50 - formik.values.nombre.length}
               </div>
             </div>
 
@@ -145,7 +145,7 @@ export const Register = () => {
                 </div>
               )}
               <div className="text-gray-500 text-sm">
-                carácteres restantes: {50 - formik.values.apellido.length}
+                Carácteres restantes: {50 - formik.values.apellido.length}
               </div>
             </div>
 
@@ -177,7 +177,7 @@ export const Register = () => {
                 </div>
               )}
               <div className="text-gray-500 text-sm">
-                carácteres restantes: {50 - formik.values.direccion.length}
+                Carácteres restantes: {50 - formik.values.direccion.length}
               </div>
             </div>
 
@@ -239,7 +239,7 @@ export const Register = () => {
                 </div>
               )}
               <div className="text-gray-500 text-sm">
-                carácteres restantes: {50 - formik.values.email.length}
+                Carácteres restantes: {50 - formik.values.email.length}
               </div>
             </div>
 
