@@ -73,7 +73,7 @@ export const Register = () => {
   return (
     <>
       <div className="bg-white flex justify-center items-center w-1/2">
-        <div className="md:w-4/5 sm:w-full">
+        <div className="md:w-4/5 sm:w-full sm:h-full">
           {Object.keys(mensaje).length > 0 && (
             <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>
           )}
@@ -281,7 +281,6 @@ export const Register = () => {
             </div>
           </form>
 
-          <div className="mt-5 text-xs border-b-2 py-4 "></div>
 
           <div className="mt-3 text-sm flex justify-end items-center">
             <Link
