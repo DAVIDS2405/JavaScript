@@ -105,7 +105,7 @@ const Login = () => {
             className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 hover:bg-black hover:text-white"
             onClick={() => {
               const popup = window.open(
-                `${import.meta.env.VITE_BACKEND_URL}/auth/github`,
+                `https://backend-poly-s.onrender.com/auth/github`,
                 "targetWindow",
                 `toolbar=no,
           location=no,
