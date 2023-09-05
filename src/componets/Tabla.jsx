@@ -4,7 +4,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import Mensaje from "./Alertas/Mensaje";
 import { useNavigate } from "react-router-dom";
-
+import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
 const Tabla = () => {
   const [pacientes, setPacientes] = useState([]);
@@ -123,150 +123,21 @@ const Tabla = () => {
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage);
   };
-
-
-/*
-  return (
-    <>
+ 
+return (
+  <>
+    <div className="relative text-gray-600">
       <input
         type="text"
         placeholder="Buscar paciente..."
         value={busqueda}
         onChange={(e) => setBusqueda(e.target.value)}
+        className="bg-white h-10 px-5 pr-10 rounded-full text-sm focus:outline-none w-72"
       />
-
-      {busqueda === "" ? (
-        pacientes.length === 0 ? (
-          <Mensaje tipo={"active"}>{"No existen registros"}</Mensaje>
-        ) : (
-          <table className="w-full mt-5 table-auto shadow-lg bg-white">
-            <thead className="bg-gray-800 text-slate-400">
-              <tr>
-                <th className="p-2">N°</th>
-                <th className="p-2">Nombre</th>
-                <th className="p-2">Propietario</th>
-                <th className="p-2">Correo</th>
-                <th className="p-2">Celular</th>
-                <th className="p-2">Estado</th>
-                <th className="p-2">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pacientes.map((paciente, index) => (
-                <tr
-                  className="border-b hover:bg-gray-300 text-center"
-                  key={paciente._id}
-                >
-                  <td>{index + 1}</td>
-                  <td>{paciente.nombre}</td>
-                  <td>{paciente.propietario}</td>
-                  <td>{paciente.email}</td>
-                  <td>{paciente.celular}</td>
-                  <td>
-                    <span className="bg-blue-100 text-green-500 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                      {paciente.estado && "activo"}
-                    </span>
-                  </td>
-                  <td className="py-2 text-center">
-                    <MdNoteAdd
-                      className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"
-                      onClick={() =>
-                        navigate(`/dashboard/visualizar/${paciente._id}`)
-                      }
-                    />
-
-                    <MdInfo
-                      className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"
-                      onClick={() =>
-                        navigate(`/dashboard/actualizar/${paciente._id}`)
-                      }
-                    />
-
-                    <MdDeleteForever
-                      className="h-7 w-7 text-red-900 cursor-pointer inline-block"
-                      onClick={() => {
-                        handleDelete(paciente._id);
-                      }}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )
-      ) : (
-        // Mostrar los resultados de la búsqueda
-        pacientesFiltrados.length === 0 ? (
-          <Mensaje tipo={"active"}>{"No se encontraron resultados"}</Mensaje>
-        ) : (
-          <table className="w-full mt-5 table-auto shadow-lg bg-white">
-            <thead className="bg-gray-800 text-slate-400">
-              <tr>
-                <th className="p-2">N°</th>
-                <th className="p-2">Nombre</th>
-                <th className="p-2">Propietario</th>
-                <th className="p-2">Correo</th>
-                <th className="p-2">Celular</th>
-                <th className="p-2">Estado</th>
-                <th className="p-2">Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pacientesFiltrados.map((paciente, index) => (
-                <tr
-                  className="border-b hover:bg-gray-300 text-center"
-                  key={paciente._id}
-                >
-                  <td>{index + 1}</td>
-                  <td>{paciente.nombre}</td>
-                  <td>{paciente.propietario}</td>
-                  <td>{paciente.email}</td>
-                  <td>{paciente.celular}</td>
-                  <td>
-                    <span className="bg-blue-100 text-green-500 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                      {paciente.estado && "activo"}
-                    </span>
-                  </td>
-                  <td className="py-2 text-center">
-                    <MdNoteAdd
-                      className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"
-                      onClick={() =>
-                        navigate(`/dashboard/visualizar/${paciente._id}`)
-                      }
-                    />
-
-                    <MdInfo
-                      className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"
-                      onClick={() =>
-                        navigate(`/dashboard/actualizar/${paciente._id}`)
-                      }
-                    />
-
-                    <MdDeleteForever
-                      className="h-7 w-7 text-red-900 cursor-pointer inline-block"
-                      onClick={() => {
-                        handleDelete(paciente._id);
-                      }}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        )
-      )}
-    </>
-  );
-*/
- 
-return (
-  <>
-    <input
-      type="text"
-      placeholder="Buscar paciente..."
-      value={busqueda}
-      onChange={(e) => setBusqueda(e.target.value)}
-    />
+      <span className="absolute left-[-1.5rem] top-3">
+        <MagnifyingGlassIcon className="w-5 h-5 text-black" />
+      </span>
+    </div>
 
     {busqueda === "" ? (
       currentPatients.length === 0 ? (
@@ -333,77 +204,77 @@ return (
                 <span
                   key={index}
                   onClick={() => handlePageChange(index)}
-                  className={`pagination-item ${
-                    index === currentPage ? "active" : ""
+                  className={`cursor-pointer inline-block px-3 py-1 mx-1 rounded-lg mt-3 ${
+                    index === currentPage
+                      ? "bg-blue-500 text-white"
+                      : "bg-gray-200 text-gray-700 hover:bg-blue-200 hover:text-blue-500"
                   }`}
                 >
-                  pagina {index + 1}
+                  página {index + 1}
                 </span>
               ))}
             </div>
           )}
         </div>
       )
+    ) : // Mostrar los resultados de la búsqueda
+    pacientesFiltrados.length === 0 ? (
+      <Mensaje tipo={"active"}>{"No se encontraron resultados"}</Mensaje>
     ) : (
-      // Mostrar los resultados de la búsqueda
-      pacientesFiltrados.length === 0 ? (
-        <Mensaje tipo={"active"}>{"No se encontraron resultados"}</Mensaje>
-      ) : (
-        <table className="w-full mt-5 table-auto shadow-lg bg-white">
-          <thead className="bg-gray-800 text-slate-400">
-            <tr>
-              <th className="p-2">N°</th>
-              <th className="p-2">Nombre</th>
-              <th className="p-2">Propietario</th>
-              <th className="p-2">Correo</th>
-              <th className="p-2">Celular</th>
-              <th className="p-2">Estado</th>
-              <th className="p-2">Acciones</th>
+      <table className="w-full mt-5 table-auto shadow-lg bg-white">
+        <thead className="bg-gray-800 text-slate-400">
+          <tr>
+            <th className="p-2">N°</th>
+            <th className="p-2">Nombre</th>
+            <th className="p-2">Propietario</th>
+            <th className="p-2">Correo</th>
+            <th className="p-2">Celular</th>
+            <th className="p-2">Estado</th>
+            <th className="p-2">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {pacientesFiltrados.map((paciente, index) => (
+            <tr
+              className="border-b hover:bg-gray-300 text-center"
+              key={paciente._id}
+            >
+              <td>{index + 1}</td>
+              <td>{paciente.nombre}</td>
+              <td>{paciente.propietario}</td>
+              <td>{paciente.email}</td>
+              <td>{paciente.celular}</td>
+              <td>
+                <span className="bg-blue-100 text-green-500 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                  {paciente.estado && "activo"}
+                </span>
+              </td>
+              <td className="py-2 text-center">
+                <MdNoteAdd
+                  className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"
+                  onClick={() =>
+                    navigate(`/dashboard/visualizar/${paciente._id}`)
+                  }
+                />
+
+                <MdInfo
+                  className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"
+                  onClick={() =>
+                    navigate(`/dashboard/actualizar/${paciente._id}`)
+                  }
+                />
+
+                <MdDeleteForever
+                  className="h-7 w-7 text-red-900 cursor-pointer inline-block"
+                  onClick={() => {
+                    handleDelete(paciente._id);
+                  }}
+                />
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {pacientesFiltrados.map((paciente, index) => (
-              <tr
-                className="border-b hover:bg-gray-300 text-center"
-                key={paciente._id}
-              >
-                <td>{index + 1}</td>
-                <td>{paciente.nombre}</td>
-                <td>{paciente.propietario}</td>
-                <td>{paciente.email}</td>
-                <td>{paciente.celular}</td>
-                <td>
-                  <span className="bg-blue-100 text-green-500 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-                    {paciente.estado && "activo"}
-                  </span>
-                </td>
-                <td className="py-2 text-center">
-                  <MdNoteAdd
-                    className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"
-                    onClick={() =>
-                      navigate(`/dashboard/visualizar/${paciente._id}`)
-                    }
-                  />
-
-                  <MdInfo
-                    className="h-7 w-7 text-slate-800 cursor-pointer inline-block mr-2"
-                    onClick={() =>
-                      navigate(`/dashboard/actualizar/${paciente._id}`)
-                    }
-                  />
-
-                  <MdDeleteForever
-                    className="h-7 w-7 text-red-900 cursor-pointer inline-block"
-                    onClick={() => {
-                      handleDelete(paciente._id);
-                    }}
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      )
+          ))}
+        </tbody>
+      </table>
     )}
   </>
 );

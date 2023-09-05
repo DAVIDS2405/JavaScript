@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@heroicons/react": "^2.0.13",
+    "@heroicons/react": "^2.0.18",
     "axios": "^1.4.0",
     "formik": "^2.4.3",
     "js-cookie": "^3.0.5",
