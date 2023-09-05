@@ -84,9 +84,6 @@ router.post("/login", login);
  *               password:
  *                 type: string
  *                 example: contraseña
- *               token:
- *                 type: string
- *                 example: 4FYSTYaaA1564
  *     responses:
  *       200:
  *         description: OK
