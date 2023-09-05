@@ -9,11 +9,11 @@ passport.use(
     {
       clientID: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_PASSWORD,
-      callbackURL: "http://localhost:3000/auth/github/callback",
+      callbackURL: "https://backend-poly-s.onrender.com/auth/github/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        const profile_Json = profile._json
+        const profile_Json = profile._json;
         const existingUser = await Veterinario.findOne({
           githubId: profile.id,
         });
@@ -26,7 +26,7 @@ passport.use(
             direccion: existingUser?.direccion,
             telefono: existingUser?.telefono,
             _id: existingUser._id,
-            password:"",
+            password: "",
             email: existingUser?.email,
           };
 
@@ -36,14 +36,14 @@ passport.use(
             githubId: profile_Json.id,
             nombre: profile_Json?.name || "",
             apellido: "",
-            password_requiered :true,
+            password_requiered: true,
             email: profile_Json?.email || "",
             direccion: profile_Json?.location || "",
-            telefono: 1
+            telefono: 1,
           });
           newUser.password = await newUser.encrypPassword("");
-          newUser.token = null
-          newUser.confirmEmail = true
+          newUser.token = null;
+          newUser.confirmEmail = true;
           await newUser.save();
           const token = generarJWT(newUser._id);
           const userWithToken = {

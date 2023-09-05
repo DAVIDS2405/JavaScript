@@ -23,7 +23,7 @@ loginRouter.get(
       <body>
       </body>
       <script>
-        window.opener.postMessage(${user}, 'http://localhost:5173')
+        window.opener.postMessage(${user}, 'https://frontend-poly-system.onrender.com')
       </script>
     </html>`);
   }
