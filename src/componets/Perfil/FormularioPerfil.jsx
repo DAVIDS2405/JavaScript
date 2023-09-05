@@ -25,7 +25,7 @@ const FormularioPerfil = () => {
       (async function fetchData() {
         try {
           const respuesta = await (
-            await fetch(`http://localhost:3000/api/perfil`, {
+            await fetch(`${import.meta.env.VITE_BACKEND_URL}/perfil`, {
               method: "GET",
               headers: {
                 Authorization: `Bearer ${token}`, // Agrega el token JWT como Bearer Token en los encabezados
@@ -89,7 +89,7 @@ const FormularioPerfil = () => {
         }}
         onSubmit={async (data) => {
           let correos = [];
-          const url = `http://localhost:3000/api/veterinarios`;
+          const url = `${import.meta.env.VITE_BACKEND_URL}/veterinarios`;
           try {
             const respuesta = await (await fetch(url)).json();
             correos = respuesta.map((data) => data.email);

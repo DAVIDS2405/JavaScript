@@ -105,7 +105,7 @@ const Login = () => {
             className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 hover:bg-black hover:text-white"
             onClick={() => {
               const popup = window.open(
-                "http://localhost:3000/auth/github",
+                "${import.meta.env.VITE_BACKEND_URL}/auth/github",
                 "targetWindow",
                 `toolbar=no,
           location=no,
@@ -117,7 +117,10 @@ const Login = () => {
           height=700`
               );
               window.addEventListener("message", (event) => {
-                if (event.origin === "http://localhost:3000" && event.data) {
+                if (
+                  event.origin === "https://backend-poly-s.onrender.com" &&
+                  event.data
+                ) {
                   localStorage.setItem("token", event.data.token);
 
                   setAuth(event.data);

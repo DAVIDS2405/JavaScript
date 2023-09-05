@@ -16,7 +16,7 @@ const Password = () => {
     (async function fetchData() {
       try {
         const respuesta = await (
-          await fetch(`http://localhost:3000/api/perfil`, {
+          await fetch(`${import.meta.env.VITE_BACKEND_URL}/perfil`, {
             method: "GET",
             headers: {
               Authorization: `Bearer ${token}`,
