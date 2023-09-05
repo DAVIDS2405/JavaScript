@@ -249,9 +249,7 @@ const FormularioPerfil = () => {
               />
               <ErrorMessage
                 name="email"
-                component={() => (
-                  <Mensaje tipo={false}>{errors.email}</Mensaje>
-                )}
+                component={() => <Mensaje tipo={false}>{errors.email}</Mensaje>}
               />
               <div className="text-gray-500  mb-3">
                 {values.email.length}/{charLimit}
@@ -259,7 +257,9 @@ const FormularioPerfil = () => {
             </div>
             <button
               type="submit"
-              className="bg-sky-900 hover:bg-sky-800 text-white font-semibold py-2 px-4 mt-2 rounded-xl transform transition-transform motion-reduce:transform-none motion-safe:hover:scale-110"
+              className="bg-gray-800 w-full p-3 
+    text-slate-300 uppercase font-bold rounded-lg 
+    hover:bg-gray-600 cursor-pointer transition-all"
             >
               Actualizar
             </button>
