@@ -109,7 +109,7 @@ export const Formulario = ({ paciente }) => {
           <div>
             <label
               htmlFor="nombre"
-              className="text-gray-700 uppercase font-bold text-sm"
+              className="text-gray-700 capitalize font-bold text-sm"
             >
               Nombre de la mascota:{' '}
             </label>
@@ -135,7 +135,7 @@ export const Formulario = ({ paciente }) => {
           <div>
             <label
               htmlFor="propietario"
-              className="text-gray-700 uppercase font-bold text-sm"
+              className="text-gray-700 capitalize font-bold text-sm"
             >
               Nombre del propietario:{' '}
             </label>
@@ -161,7 +161,7 @@ export const Formulario = ({ paciente }) => {
           <div>
             <label
               htmlFor="email"
-              className="text-gray-700 uppercase font-bold text-sm"
+              className="text-gray-700 capitalize font-bold text-sm"
             >
               Correo:{' '}
             </label>
@@ -187,7 +187,7 @@ export const Formulario = ({ paciente }) => {
           <div>
             <label
               htmlFor="celular"
-              className="text-gray-700 uppercase font-bold text-sm"
+              className="text-gray-700 capitalize font-bold text-sm"
             >
               Celular:{' '}
             </label>
@@ -220,7 +220,7 @@ export const Formulario = ({ paciente }) => {
           <div>
             <label
               htmlFor="convencional"
-              className="text-gray-700 uppercase font-bold text-sm"
+              className="text-gray-700 capitalize font-bold text-sm"
             >
               Convencional:{' '}
             </label>
@@ -253,7 +253,7 @@ export const Formulario = ({ paciente }) => {
           <div>
             <label
               htmlFor="salida"
-              className="text-gray-700 uppercase font-bold text-sm"
+              className="text-gray-700 capitalize font-bold text-sm"
             >
               Fecha de salida:{' '}
             </label>
@@ -267,7 +267,7 @@ export const Formulario = ({ paciente }) => {
           <div>
             <label
               htmlFor="sintomas"
-              className="text-gray-700 uppercase font-bold text-sm"
+              className="text-gray-700 capitalize font-bold text-sm"
             >
               Síntomas:{' '}
             </label>
@@ -296,7 +296,7 @@ export const Formulario = ({ paciente }) => {
           </div>
           <button
             type="submit"
-            className="bg-gray-600 w-full p-3 text-slate-300 uppercase font-bold rounded-lg hover:bg-gray-900 cursor-pointer transition-all"
+            className="bg-gray-600 w-full p-3 text-slate-300 capitalize font-bold rounded-lg hover:bg-gray-900 cursor-pointer transition-all"
             disabled={isSubmitting}
           >
             {paciente?._id ? 'Actualizar paciente' : 'Registrar paciente'}

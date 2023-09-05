@@ -56,7 +56,7 @@ const Restablecer = () => {
       {Object.keys(mensaje).length > 0 && (
         <Mensaje tipo={mensaje.tipo}>{mensaje.respuesta}</Mensaje>
       )}
-      <h1 className="text-3xl font-semibold mb-2 text-center uppercase  text-gray-500">
+      <h1 className="text-3xl font-semibold mb-2 text-center capitalize  text-gray-500">
         Bienvenido de nuevo
       </h1>
       <small className="text-gray-400 block my-4 text-sm">
