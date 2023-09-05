@@ -24,7 +24,7 @@ const AuthProvider = ({ children }) => {
   const actualizarPerfil = async (datos) => {
     const token = localStorage.getItem("token");
     try {
-      const url = `${import.meta.env.VITE_BACKEND_URL}/veterinario/${datos.id}`;
+      const url = `${import.meta.env.VITE_BACKEND_URL}/veterinario/${datos._id}`;
       const options = {
         headers: {
           method: "PUT",
