@@ -1,6 +1,5 @@
 import { Router } from "express";
 import passport from "passport";
-import verificarAutenticacion from "../middlewares/autenticacion.js";
 
 const loginRouter = Router()
 
