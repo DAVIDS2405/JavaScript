@@ -30,3 +30,29 @@ export const startViewTransition = () => {
     });
   });
 };
+
+
+
+// simple
+
+  if (document.startViewTransition) {
+    window.navigation.addEventListener("navigate", (event) => {
+      const toUrl = new URL(event.destination.url);
+
+      if (location.origin !== toUrl.origin) return;
+
+      event.intercept({
+        async handler() {
+          const response = await fetch(toUrl.pathname);
+          const html = await response.text();
+          const data = html.match(/<body\b[^>]*>([\s\S]*?)<\/body>/i);
+          if (data) {
+            document.startViewTransition(() => {
+              document.body.innerHTML = data[1];
+              document.documentElement.scrollTop = 0;
+            });
+          }
+        },
+      });
+    });
+  }
